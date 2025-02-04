@@ -2,11 +2,11 @@ import Button from "../common/Button";
 
 function IndexButton() {
   return (
-    <div className="hidden md:flex gap-2 justify-center items-center md:border-l-2 md:border-white px-4  ">
+    <div className="hidden md:flex gap-2 justify-center px-4 items-center md:border-l-2 md:border-white">
       <Button
         type="submit"
         className={
-          " text-[#9bf272] hover:bg-[#9bf272] hover:text-black transition-all duration-200 ease-in"
+          "text-[#9bf272]  hover:border hover:border-[#9bf272] transition-all duration-200 ease-in"
         }
         text={"Masuk"}
       />

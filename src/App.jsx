@@ -4,7 +4,7 @@ import Navbar from "./components/layout/Navbar";
 
 function App() {
   return (
-    <div className="md:px-48 px-10 h-screen w-screen py-2">
+    <div className="md:px-48 px-10">
       <Navbar />
       <Slider />
       <Cards />

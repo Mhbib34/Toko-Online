@@ -20,7 +20,7 @@ function Cards() {
         return (
           <div
             key={item.id}
-            className="md:w-44 w-36 md:my-2 p-2 flex flex-col shadow-2xl rounded-md justify-between  items-start"
+            className="md:w-44 w-36 md:my-2 p-2 flex cursor-pointer flex-col shadow-2xl  duration-300 transition rounded-md justify-between hover:transition hover:-translate-y-3 hover:duration-150  items-start"
           >
             <div className="w-full md:h-40 h-32">
               <img src={item.image} alt="" className="w-full h-full " />

@@ -1,4 +1,4 @@
-function Input({ type, name, placeholder }) {
+function Input({ type, name, placeholder, className }) {
   return (
     <>
       <input
@@ -6,7 +6,7 @@ function Input({ type, name, placeholder }) {
         name={name}
         id={name}
         placeholder={placeholder}
-        className="w-full rounded-md px-2 text-white focus:outline-none "
+        className={className}
       />
     </>
   );

@@ -6,7 +6,7 @@ export default function RegisterForm() {
   return (
     <div className="bg-white/20 backdrop-blur-sm py-10 px-10 rounded-2xl flex flex-col md:w-[30%] w-[90%] text-center border-2 shadow-2xl">
       <h1 className="my-2 font-medium text-3xl text-[#9bf272]">Register</h1>
-      <p className="">Welcome, Please enter your Login Information</p>
+      <p className="">Welcome, Please enter your Personal Information</p>
       <div className="flex flex-col gap-2 my-4">
         <Input
           type="text"

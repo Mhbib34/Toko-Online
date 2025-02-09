@@ -1,5 +1,5 @@
 import Input from "../common/Input";
-
+import { Link } from "react-router-dom";
 function Form() {
   function handleInputSearch(e) {
     e.preventDefault();
@@ -18,7 +18,9 @@ function Form() {
         />
       </form>
       <div className="hidden md:flex cursor-pointer">
-        <i className="bx bxs-cart text-white text-2xl w-full h-full"></i>
+        <Link to="/cart">
+          <i className="bx bxs-cart text-white text-2xl w-full h-full"></i>
+        </Link>
       </div>
     </div>
   );

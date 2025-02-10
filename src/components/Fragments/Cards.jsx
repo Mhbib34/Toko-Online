@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingAnimation from "../common/LoadingAnimation";
+
 function Cards() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

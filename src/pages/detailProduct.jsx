@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import LoadingAnimation from "../components/common/LoadingAnimation";
 import Navbar from "../components/layout/Navbar";
 import Button from "../components/common/Button";
+import Cards from "../components/Fragments/Cards";
 
 export default function DetailProduct() {
   const { id } = useParams();
@@ -92,17 +93,18 @@ export default function DetailProduct() {
               <Button
                 text="+Keranjang"
                 type="button"
-                className="bg-[#9bf272] border-[#9bf272]  hover:border-[#2b2b2b]  text-[#2b2b2b] transition-all duration-200 ease-in"
+                className="bg-[#9bf272] border-[#9bf272]  hover:opacity-85  text-[#2b2b2b] transition-all duration-200 ease-in"
               />
               <Button
                 text="Beli Langsung"
                 type="button"
-                className="hover:bg-[#9bf272] hover:text-[#2b2b2b] border-[#2b2b2b] bg-[#2b2b2b] text-[#9bf272] transition-all duration-200 ease-in"
+                className="border-[#2b2b2b] bg-[#2b2b2b] text-[#9bf272] "
               />
             </div>
           </div>
         </div>
       </div>
+      <Cards />
     </div>
   );
 }

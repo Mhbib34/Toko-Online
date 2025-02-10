@@ -1,24 +1,47 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import LoadingAnimation from "../common/LoadingAnimation";
 function Cards() {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch("https://fakestoreapi.com/products");
+        if (!response) {
+          throw new Error("Product not found");
+        }
         const data = await response.json();
         setData(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchData();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center">
+        <LoadingAnimation className="mt-20 w-[50%] h-[50%] flex justify-center items-center" />
+      </div>
+    );
+  }
+
+  function handleDetail(id) {
+    navigate(`/card/detail/${id}`);
+  }
 
   return (
     <div className="flex justify-between flex-wrap">
       {data.map((item) => {
         return (
           <div
+            onClick={() => handleDetail(item.id)}
             key={item.id}
             className="md:w-44 w-36 md:my-2 p-2 flex cursor-pointer flex-col shadow-2xl duration-300 transition rounded-md justify-between hover:transition hover:-translate-y-3 hover:duration-150  items-start"
           >

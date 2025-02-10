@@ -60,11 +60,13 @@ export default function DetailProduct() {
             className="w-full h-full"
           />
         </div>
-        <div className="w-[40%]">
+        <div className="w-[40%] flex flex-col gap-2">
           <h1 className="text-2xl font-bold">{product.title}</h1>
+          <span className="font-medium">
+            Terjual {product.rating.count} ⭐{product.rating.rate}
+          </span>
+          <p className="text-3xl font-bold">${product.price}</p>
           <p className="text-gray-700">{product.description}</p>
-          <p className="text-lg font-bold">${product.price}</p>
-          <p>Rating: {product.rating.rate} ⭐</p>
         </div>
         <div className="w-[30%] border shadow-2xl px-5 rounded-md h-56">
           <div className="flex flex-col h-full justify-between py-5">
@@ -73,11 +75,11 @@ export default function DetailProduct() {
                 Atur jumlah dan catatan
               </span>
               <div className="flex items-center px-2 w-[50%] border rounded-lg justify-between">
-                <button onClick={handleMin} className="text-2xl">
+                <button onClick={handleMin} className="mb-1 text-2xl">
                   -
                 </button>
-                <span className="text-xl">{count}</span>
-                <button onClick={handlePlus} className="text-2xl">
+                <span className="text-xl ">{count}</span>
+                <button onClick={handlePlus} className="mb-1 text-2xl">
                   +
                 </button>
               </div>

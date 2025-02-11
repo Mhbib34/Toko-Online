@@ -1,8 +1,18 @@
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
 import Navbar from "../components/layout/Navbar";
+import { useState, useEffect } from "react";
 
 export default function CartPages() {
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+  }, []);
+
   return (
     <div className="md:px-48 px-10 h-screen">
       <Navbar />
@@ -16,11 +26,35 @@ export default function CartPages() {
                 <span>Pilih Semua</span>
               </div>
               <Button
-                text="Hapus"
+                text="Hapus Semua"
                 type="button"
                 className="hover:bg-[#9bf272] hover:text-[#2b2b2b] border-[#2b2b2b] bg-[#2b2b2b] text-[#9bf272] transition-all duration-200 ease-in"
               />
             </div>
+            {cart.map((item) => {
+              return (
+                <div className="border shadow-2xl w-full p-5 flex justify-between rounded-t-md  mt-2 h-40 items-center">
+                  <div className="h-full flex items-center gap-5">
+                    <Input type="checkbox" className="bg-red-500" />
+                    <div className="h-full">
+                      <img src={item.image} className="h-full w-28" alt="" />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <p className="font-medium">{item.title}</p>
+                      <p className="text-sm font-light">⭐{item.rating.rate}</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-2 items-center">
+                    <p className="font-bold text-xl">${item.price}</p>
+                    <Button
+                      text="Hapus"
+                      type="button"
+                      className="hover:bg-[#9bf272] hover:text-[#2b2b2b] border-[#2b2b2b] bg-[#2b2b2b] text-[#9bf272] transition-all duration-200 ease-in"
+                    />
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div className="w-[30%] py-5">
             <div className="flex border flex-col shadow-2xl p-5 rounded-md gap-3">

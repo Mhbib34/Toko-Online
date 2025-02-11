@@ -10,6 +10,10 @@ export default function DetailProduct() {
   const [product, setProduct] = useState(null);
   const [count, setCount] = useState(1);
   const [subtotal, setSubtotal] = useState(0);
+  const [cart, setCart] = useState(() => {
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -29,10 +33,14 @@ export default function DetailProduct() {
   }, [id]);
 
   useEffect(() => {
-    if (product) {
+    if (product?.price) {
       setSubtotal((product.price * count).toFixed(2));
     }
   }, [count, product]);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   if (!product) {
     return (
@@ -43,22 +51,27 @@ export default function DetailProduct() {
   }
 
   function handlePlus() {
-    setCount(count + 1);
+    setCount((prev) => prev + 1);
   }
 
   function handleMin() {
-    if (count > 1) setCount(count - 1);
+    setCount((prev) => (prev > 1 ? prev - 1 : 1));
+  }
+
+  function handleCart() {
+    setCart((prevCart) => [...prevCart, product]);
+    console.log(cart);
   }
 
   return (
     <div className="md:px-48 px-10">
       <Navbar />
-      <div className="mt-10 flex justify-between gap-5 py-10 ">
-        <div className="w-[30%] p-2 h-72 ">
+      <div className="mt-10 flex justify-between gap-5 py-10">
+        <div className="w-[30%] p-2 h-72">
           <img
             src={product.image}
             alt={product.title}
-            className="w-full h-full"
+            className="w-full h-full object-contain"
           />
         </div>
         <div className="w-[40%] flex flex-col gap-2">
@@ -79,26 +92,27 @@ export default function DetailProduct() {
                 <button onClick={handleMin} className="mb-1 text-2xl">
                   -
                 </button>
-                <span className="text-xl ">{count}</span>
+                <span className="text-xl">{count}</span>
                 <button onClick={handlePlus} className="mb-1 text-2xl">
                   +
                 </button>
               </div>
               <div className="flex justify-between">
-                <span className="font-light">subtotal</span>
+                <span className="font-light">Subtotal</span>
                 <span className="font-semibold">$ {subtotal}</span>
               </div>
             </div>
             <div className="flex flex-col w-full gap-2 mx-auto">
               <Button
+                onClick={handleCart}
                 text="+Keranjang"
                 type="button"
-                className="bg-[#9bf272] border-[#9bf272]  hover:opacity-85  text-[#2b2b2b] transition-all duration-200 ease-in"
+                className="bg-[#9bf272] border-[#9bf272] hover:opacity-85 text-[#2b2b2b] transition-all duration-200 ease-in"
               />
               <Button
                 text="Beli Langsung"
                 type="button"
-                className="border-[#2b2b2b] bg-[#2b2b2b] text-[#9bf272] "
+                className="border-[#2b2b2b] bg-[#2b2b2b] text-[#9bf272]"
               />
             </div>
           </div>

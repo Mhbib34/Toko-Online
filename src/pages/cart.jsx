@@ -25,6 +25,14 @@ export default function CartPages() {
     localStorage.setItem("cart", JSON.stringify(filteredItem));
   }
 
+  function handleDeleteAll() {
+    if (cart.length === 0) return;
+    const isConfirm = confirm("anda yakin ingin menghapus?");
+    if (isConfirm) {
+      setCart([]);
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+  }
   return (
     <div className="md:px-48 px-10 h-screen">
       <Navbar />
@@ -38,6 +46,7 @@ export default function CartPages() {
                 <span>Pilih Semua</span>
               </div>
               <Button
+                onClick={handleDeleteAll}
                 text="Hapus Semua"
                 type="button"
                 className="hover:bg-[#9bf272] hover:text-[#2b2b2b] border-[#2b2b2b] bg-[#2b2b2b] text-[#9bf272] transition-all duration-200 ease-in"

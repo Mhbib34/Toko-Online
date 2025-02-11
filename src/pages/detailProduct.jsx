@@ -80,7 +80,9 @@ export default function DetailProduct() {
             Terjual {product.rating.count} ⭐{product.rating.rate}
           </span>
           <p className="text-3xl font-bold">${product.price}</p>
-          <p className="text-gray-700">{product.description}</p>
+          <p className="text-gray-700">
+            {product.description.substring(0, 300) + "..."}
+          </p>
         </div>
         <div className="w-[30%] border shadow-2xl px-5 rounded-md h-56">
           <div className="flex flex-col h-full justify-between py-5">

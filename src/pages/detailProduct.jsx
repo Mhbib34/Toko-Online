@@ -60,7 +60,7 @@ export default function DetailProduct() {
 
   function handleCart() {
     setCart((prevCart) => [...prevCart, product]);
-    console.log(cart);
+    alert("Item berhasil ditambahkan");
   }
 
   return (

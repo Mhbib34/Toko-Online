@@ -5,13 +5,25 @@ import { useState, useEffect } from "react";
 
 export default function CartPages() {
   const [cart, setCart] = useState([]);
+  // const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
-      setCart(JSON.parse(storedCart));
+      try {
+        const parsedCart = JSON.parse(storedCart);
+        setCart(parsedCart);
+      } catch (error) {
+        console.error("Error parsing cart data:", error);
+      }
     }
   }, []);
+
+  function handleDelete(id) {
+    const filteredItem = cart.filter((item) => item.id !== id);
+    setCart(filteredItem);
+    localStorage.setItem("cart", JSON.stringify(filteredItem));
+  }
 
   return (
     <div className="md:px-48 px-10 h-screen">
@@ -33,7 +45,10 @@ export default function CartPages() {
             </div>
             {cart.map((item) => {
               return (
-                <div className="border shadow-2xl w-full p-5 flex justify-between rounded-t-md  mt-2 h-40 items-center">
+                <div
+                  key={item.id}
+                  className="border shadow-2xl w-full p-5 flex justify-between rounded-t-md  mt-2 h-40 items-center"
+                >
                   <div className="h-full flex items-center gap-5">
                     <Input type="checkbox" className="bg-red-500" />
                     <div className="h-full">
@@ -47,6 +62,7 @@ export default function CartPages() {
                   <div className="flex flex-col gap-2 items-center">
                     <p className="font-bold text-xl">${item.price}</p>
                     <Button
+                      onClick={() => handleDelete(item.id)}
                       text="Hapus"
                       type="button"
                       className="hover:bg-[#9bf272] hover:text-[#2b2b2b] border-[#2b2b2b] bg-[#2b2b2b] text-[#9bf272] transition-all duration-200 ease-in"

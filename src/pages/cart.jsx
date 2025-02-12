@@ -21,13 +21,16 @@ export default function CartPages() {
 
   function handleDelete(id) {
     const filteredItem = cart.filter((item) => item.id !== id);
-    setCart(filteredItem);
-    localStorage.setItem("cart", JSON.stringify(filteredItem));
+    const isConfirm = confirm("anda yakin ingin menghapus item?");
+    if (isConfirm) {
+      setCart(filteredItem);
+      localStorage.setItem("cart", JSON.stringify(filteredItem));
+    }
   }
 
   function handleDeleteAll() {
     if (cart.length === 0) return;
-    const isConfirm = confirm("anda yakin ingin menghapus?");
+    const isConfirm = confirm("anda yakin ingin menghapus semua item?");
     if (isConfirm) {
       setCart([]);
       localStorage.setItem("cart", JSON.stringify([]));

@@ -1,4 +1,4 @@
-function Input({ type, name, placeholder, className }) {
+function Input({ type, name, placeholder, className, checked, onChange }) {
   return (
     <>
       <input
@@ -7,6 +7,8 @@ function Input({ type, name, placeholder, className }) {
         id={name}
         placeholder={placeholder}
         className={className}
+        checked={checked}
+        onChange={onChange}
       />
     </>
   );

@@ -68,7 +68,7 @@ export default function CartPages() {
   }
 
   return (
-    <div className="md:px-48 px-10 h-screen">
+    <div className="md:px-48 px-10 ">
       <Navbar />
       <div className="w-full my-10">
         <h1 className="md:text-2xl font-semibold">Keranjang</h1>

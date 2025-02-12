@@ -70,8 +70,8 @@ export default function CartPages() {
       <Navbar />
       <div className="w-full my-10">
         <h1 className="md:text-2xl font-semibold">Keranjang</h1>
-        <div className="flex justify-between gap-2">
-          <div className="w-[70%] py-5">
+        <div className="flex md:flex-row flex-col justify-between gap-2">
+          <div className="md:w-[70%] w-full py-5">
             <div className="border shadow-2xl w-full p-5 flex justify-between rounded-t-md items-center">
               <div className="flex gap-1">
                 <Input
@@ -96,7 +96,7 @@ export default function CartPages() {
               cart.map((item) => (
                 <div
                   key={item.id}
-                  className="border shadow-2xl w-full p-5 flex justify-between  last:rounded-b-md mt-2 h-40 items-center"
+                  className="border shadow-2xl w-full p-5 flex flex-col md:flex-row justify-between gap-3  last:rounded-b-md mt-2 md:h-40 items-center"
                 >
                   <div className="h-full flex items-center gap-5">
                     <Input
@@ -105,23 +105,27 @@ export default function CartPages() {
                       onChange={() => handleSelectItem(item.id)}
                       className="accent-[#9bf272]"
                     />
-                    <div className="h-full w-28 ">
-                      <img
-                        src={item.image}
-                        className="h-full w-full"
-                        alt={item.title}
-                      />
-                    </div>
-                    <div>
-                      <p>{item.title}</p>
-                      <p className="font-light">⭐{item.rating.rate}</p>
+                    <div className="flex md:flex-row flex-col h-full w-full items-center gap-2">
+                      <div className="md:h-full h-48 md:w-28 w-48 ">
+                        <img
+                          src={item.image}
+                          className="h-full w-full"
+                          alt={item.title}
+                        />
+                      </div>
+                      <div className="">
+                        <p>{item.title}</p>
+                        <p className="font-light">⭐{item.rating.rate}</p>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-2 items-center">
-                    <p className="font-bold text-2xl">
-                      ${(item.price * item.count).toFixed(2)}
-                    </p>
-                    <span className="text-sm">({item.count} item)</span>
+                  <div className="flex md:flex-col justify-between gap-2 w-full md:w-auto items-center">
+                    <div className="flex flex-col items-start md:items-center">
+                      <p className="font-bold  text-2xl">
+                        ${(item.price * item.count).toFixed(2)}
+                      </p>
+                      <span className="text-sm">({item.count} item)</span>
+                    </div>
                     <Button
                       text="Hapus"
                       type="button"
@@ -144,7 +148,7 @@ export default function CartPages() {
               </div>
             )}
           </div>
-          <div className="w-[30%] py-5">
+          <div className="md:w-[30%] w-full py-5">
             <div className="flex border flex-col shadow-2xl p-5 rounded-md gap-3">
               <h1 className="text-lg font-semibold">Ringkasan Belanja</h1>
               <div className="flex justify-between">

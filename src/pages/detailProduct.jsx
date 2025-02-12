@@ -77,25 +77,26 @@ export default function DetailProduct() {
   return (
     <div className="md:px-48 px-10">
       <Navbar />
-      <div className="mt-10 flex justify-between gap-5 py-10">
-        <div className="w-[30%] p-2 h-72">
+      <div className="mt-10 flex md:flex-row flex-col items-center justify-between gap-5 py-10">
+        <div className="md:w-[30%] p-2 md:h-72">
           <img
             src={product.image}
             alt={product.title}
             className="w-full h-full object-contain"
           />
         </div>
-        <div className="w-[40%] flex flex-col gap-2">
-          <h1 className="text-2xl font-bold">{product.title}</h1>
-          <span className="font-medium">
-            Terjual {product.rating.count} ⭐{product.rating.rate}
-          </span>
+        <div className="md:w-[40%] flex md:items-start  flex-col gap-2">
+          <h1 className="md:text-2xl text-lg font-bold ">{product.title}</h1>
+          <div className="flex flex-col md:flex-row gap-1">
+            <span className="font-medium">Terjual {product.rating.count} </span>
+            <span>⭐{product.rating.rate}</span>
+          </div>
           <p className="text-3xl font-bold">${product.price}</p>
           <p className="text-gray-700">
             {product.description.substring(0, 300) + "..."}
           </p>
         </div>
-        <div className="w-[30%] border shadow-2xl px-5 rounded-md h-56">
+        <div className="md:w-[30%] w-full border shadow-2xl px-5 rounded-md h-56">
           <div className="flex flex-col h-full justify-between py-5">
             <div className="flex flex-col justify-between h-full mb-2 gap-2">
               <span className="text-xl font-medium">

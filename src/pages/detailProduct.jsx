@@ -59,7 +59,18 @@ export default function DetailProduct() {
   }
 
   function handleCart() {
-    setCart((prevCart) => [...prevCart, product]);
+    const existingItem = cart.find((item) => item.id === product.id);
+
+    if (existingItem) {
+      setCart((prevCart) =>
+        prevCart.map((item) =>
+          item.id === product.id ? { ...item, count: item.count + count } : item
+        )
+      );
+    } else {
+      setCart((prevCart) => [...prevCart, { ...product, count }]);
+    }
+
     alert("Item berhasil ditambahkan");
   }
 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../components/common/Button";
 import Input from "../components/common/Input";
 import Navbar from "../components/layout/Navbar";
@@ -7,6 +8,7 @@ export default function CartPages() {
   const [cart, setCart] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [total, setTotal] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -16,11 +18,19 @@ export default function CartPages() {
   }, []);
 
   useEffect(() => {
-    const calculatedTotal = selectedItems.reduce((sum, id) => {
+    let calculatedTotal = 0;
+    let calculatedCount = 0;
+
+    selectedItems.forEach((id) => {
       const product = cart.find((item) => item.id === id);
-      return product ? sum + product.price : sum;
-    }, 0);
+      if (product) {
+        calculatedTotal += product.price * product.count;
+        calculatedCount += product.count;
+      }
+    });
+
     setTotal(calculatedTotal.toFixed(2));
+    setTotalCount(calculatedCount);
   }, [selectedItems, cart]);
 
   function handleRemoveItem(id) {
@@ -70,6 +80,7 @@ export default function CartPages() {
                     selectedItems.length === cart.length && cart.length > 0
                   }
                   onChange={handleSelectAll}
+                  className="accent-[#9bf272]"
                 />
                 <span>Pilih Semua</span>
               </div>
@@ -85,27 +96,32 @@ export default function CartPages() {
               cart.map((item) => (
                 <div
                   key={item.id}
-                  className="border shadow-2xl w-full p-5 flex justify-between rounded-t-md mt-2 h-40 items-center"
+                  className="border shadow-2xl w-full p-5 flex justify-between  last:rounded-b-md mt-2 h-40 items-center"
                 >
                   <div className="h-full flex items-center gap-5">
                     <Input
                       type="checkbox"
                       checked={selectedItems.includes(item.id)}
                       onChange={() => handleSelectItem(item.id)}
+                      className="accent-[#9bf272]"
                     />
-                    <div className="h-full">
+                    <div className="h-full w-28 ">
                       <img
                         src={item.image}
-                        className="h-full"
+                        className="h-full w-full"
                         alt={item.title}
                       />
                     </div>
                     <div>
                       <p>{item.title}</p>
+                      <p className="font-light">⭐{item.rating.rate}</p>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-1 items-center">
-                    <p className="font-bold text-2xl">${item.price}</p>
+                  <div className="flex flex-col gap-2 items-center">
+                    <p className="font-bold text-2xl">
+                      ${(item.price * item.count).toFixed(2)}
+                    </p>
+                    <span className="text-sm">({item.count} item)</span>
                     <Button
                       text="Hapus"
                       type="button"
@@ -116,9 +132,16 @@ export default function CartPages() {
                 </div>
               ))
             ) : (
-              <p className="text-center text-gray-500 mt-5">
-                Keranjang kosong 😔
-              </p>
+              <div className="text-center text-gray-500 mt-5 flex flex-col gap-4">
+                <p>Keranjang masih kosong 😔</p>
+                <Link to="/">
+                  <Button
+                    text="Kembali belanja"
+                    type="button"
+                    className="hover:bg-[#9bf272] hover:text-[#2b2b2b] border-[#2b2b2b] bg-[#2b2b2b] text-[#9bf272] transition-all duration-200 ease-in"
+                  />
+                </Link>
+              </div>
             )}
           </div>
           <div className="w-[30%] py-5">

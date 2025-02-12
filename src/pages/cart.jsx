@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Button from "../components/common/Button";
-import Input from "../components/common/Input";
 import Navbar from "../components/layout/Navbar";
 import { useState, useEffect } from "react";
 import CardItem from "../components/Fragments/CartItem";

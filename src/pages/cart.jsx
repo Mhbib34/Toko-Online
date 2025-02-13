@@ -42,13 +42,19 @@ export default function CartPages() {
       text: "Anda yakin ingin menghapus item?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#9bf272",
+      cancelButtonColor: "#2b2b2b",
       confirmButtonText: "Hapus item",
       cancelButtonText: "Batalkan",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Berhasil", "Item anda berhasil dihapus", "success");
+        Swal.fire({
+          title: "Berhasil",
+          text: "I  tem berhasil dihapus",
+          icon: "success",
+          confirmButtonColor: "#9bf272",
+          confirmButtonText: "Berhasil",
+        });
         const updatedCart = cart.filter((item) => item.id !== id);
         setCart(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -76,13 +82,19 @@ export default function CartPages() {
       text: "Anda yakin ingin menghapus semua item?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#9bf272",
+      cancelButtonColor: "#2b2b2b",
       confirmButtonText: "Hapus semua",
       cancelButtonText: "Batalkan",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Berhasil", "Semua item berhasil dihapus", "success"); // More accurate message
+        Swal.fire({
+          title: "Berhasil",
+          text: "Semua item berhasil dihapus",
+          icon: "success",
+          confirmButtonColor: "#9bf272",
+          confirmButtonText: "Berhasil",
+        });
         setCart([]);
         localStorage.setItem("cart", JSON.stringify([]));
       }

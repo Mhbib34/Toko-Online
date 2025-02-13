@@ -73,9 +73,11 @@ export default function DetailProduct() {
     }
 
     Swal.fire({
-      title: "Success!",
+      title: "Berhasil!",
       text: "Item berhasil ditambahkan",
       icon: "success",
+      confirmButtonColor: "#9bf272",
+      confirmButtonText: "Berhasil",
     });
   }
 

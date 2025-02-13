@@ -4,6 +4,7 @@ import LoadingAnimation from "../components/common/LoadingAnimation";
 import Navbar from "../components/layout/Navbar";
 import Button from "../components/common/Button";
 import Cards from "../components/Fragments/Cards";
+import Swal from "sweetalert2";
 
 export default function DetailProduct() {
   const { id } = useParams();
@@ -71,7 +72,11 @@ export default function DetailProduct() {
       setCart((prevCart) => [...prevCart, { ...product, count }]);
     }
 
-    alert("Item berhasil ditambahkan");
+    Swal.fire({
+      title: "Success!",
+      text: "Item berhasil ditambahkan",
+      icon: "success",
+    });
   }
 
   return (

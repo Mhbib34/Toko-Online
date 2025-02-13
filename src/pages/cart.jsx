@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import CardItem from "../components/Fragments/CartItem";
 import CardActions from "../components/Fragments/CartActions";
 import CartSummary from "../components/Fragments/CartSummary";
+import Swal from "sweetalert2";
 
 export default function CartPages() {
   const [cart, setCart] = useState([]);
@@ -36,12 +37,23 @@ export default function CartPages() {
   }, [selectedItems, cart]);
 
   function handleRemoveItem(id) {
-    const updatedCart = cart.filter((item) => item.id !== id);
-    const isConfirm = confirm("Apakah anda yakin ingin menghapus item?");
-    if (isConfirm) {
-      setCart(updatedCart);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-    }
+    Swal.fire({
+      title: "Hapus item",
+      text: "Anda yakin ingin menghapus item?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Hapus item",
+      cancelButtonText: "Batalkan",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Berhasil", "Item anda berhasil dihapus", "success");
+        const updatedCart = cart.filter((item) => item.id !== id);
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+      }
+    });
   }
 
   function handleSelectItem(id) {
@@ -59,12 +71,22 @@ export default function CartPages() {
   }
 
   function handleRemoveAll() {
-    if (cart.length === 0) return;
-    const isConfirm = confirm("Apakah anda yakin ingin menghapus semua item?");
-    if (isConfirm) {
-      setCart([]);
-      localStorage.setItem("cart", JSON.stringify([]));
-    }
+    Swal.fire({
+      title: "Hapus semua item",
+      text: "Anda yakin ingin menghapus semua item?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Hapus semua",
+      cancelButtonText: "Batalkan",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Berhasil", "Semua item berhasil dihapus", "success"); // More accurate message
+        setCart([]);
+        localStorage.setItem("cart", JSON.stringify([]));
+      }
+    });
   }
 
   return (

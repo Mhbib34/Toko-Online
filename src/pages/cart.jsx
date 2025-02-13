@@ -50,7 +50,7 @@ export default function CartPages() {
       if (result.isConfirmed) {
         Swal.fire({
           title: "Berhasil",
-          text: "I  tem berhasil dihapus",
+          text: "Item berhasil dihapus",
           icon: "success",
           confirmButtonColor: "#9bf272",
           confirmButtonText: "Berhasil",

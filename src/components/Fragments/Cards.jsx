@@ -10,7 +10,9 @@ function Cards() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://fakestoreapi.com/products");
+        const response = await fetch(
+          "https://fakestoreapi.com/products?limit=18"
+        );
         if (!response) {
           throw new Error("Product not found");
         }

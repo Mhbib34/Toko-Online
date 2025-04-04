@@ -46,7 +46,7 @@ function Cards() {
           <div
             onClick={() => handleDetail(item.id)}
             key={item.id}
-            className="md:w-44 w-36 md:my-2 p-2 flex cursor-pointer flex-col shadow-2xl duration-300 transition rounded-md justify-between hover:transition hover:scale-110 hover:duration-150  items-start"
+            className="md:w-44 w-36 md:my-2 p-2 border-2 border-slate-900 flex cursor-pointer flex-col shadow-2xl duration-300 transition rounded-md justify-between hover:transition hover:scale-110 hover:duration-150  items-start"
           >
             <div className="w-full md:h-40 h-32">
               <img src={item.image} alt="" className="w-full h-full " />

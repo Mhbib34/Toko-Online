@@ -40,7 +40,7 @@ function Cards() {
   }
 
   return (
-    <div className="flex justify-between flex-wrap">
+    <div className="flex justify-between flex-wrap gap-2">
       {data.map((item) => {
         return (
           <div

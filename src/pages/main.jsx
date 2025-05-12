@@ -4,7 +4,7 @@ import Navbar from "../components/layout/Navbar";
 
 export default function MainPages() {
   return (
-    <div className="md:px-48 px-10">
+    <div className="md:px-48 px-2">
       <Navbar />
       <ImageSlider />
       <Cards />

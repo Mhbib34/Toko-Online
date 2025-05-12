@@ -19,7 +19,7 @@ function ImageSlider() {
 
   return (
     <div className="w-full md:h-[250px] h-[100px] overflow-hidden relative my-5">
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full ">
         {images.map((src, index) => (
           <img
             key={index}
